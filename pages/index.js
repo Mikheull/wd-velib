@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useRef, useEffect, useState } from "react";
 
 import data from '../public/data/stations.json';
+import mapStyles from '../public/styles/map.module.css'
 
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
@@ -18,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     if (pageIsMounted) {
-      mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
+      mapboxgl.accessToken = "pk.eyJ1IjoibWlraGV1bGwiLCJhIjoiY2ppa24wbnVmMjAxZzNxcXAzbGxvcHdwcSJ9.PRr0Bp0Y-i2xUrJ5cBvbPw";
 
       // Init
       const map = new mapboxgl.Map({
@@ -93,25 +94,7 @@ export default function Home() {
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
       </Head>
 
-      <div id="map-container" style={{ height: "100vh", width: "100vw" }} />
-
-      <style jsx>{`
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
+      <div id="map-container" className={mapStyles.map} style={{ height: "100vh", width: "100vw" }} />
     </div>
   )
 }
