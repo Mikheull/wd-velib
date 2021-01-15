@@ -50,34 +50,85 @@ export default function Home() {
       // Load stations
       map.on('load', function () {
       
-        map.loadImage( '/images/pin.png',
-          function (error, image) {
-            if (error) throw error;
-            map.addImage('custom-marker', image);
-  
-            map.addSource('points', {
-              'type': 'geojson',
-              'data': {
-                'type': 'FeatureCollection',
-                'features': data.features
-              }
-            });
-            
-            // Add a symbol layer
-            map.addLayer({
-              'id': 'symbols',
-              'type': 'symbol',
-              'source': 'points',
-              'layout': {
-                'icon-image': 'custom-marker'
-              },
-              'filter': ['==', '$type', 'Point']
-            });
-          }
-        );
-  
-      });
+        map.addSource('points', {
+          'type': 'geojson',
+          'data': {
+            'type': 'FeatureCollection',
+            'features': data.features
+          },
+          'cluster': true,
+          'clusterMaxZoom': 12,
+          'clusterRadius': 50,
+          'clusterProperties': {
+            'sum': ["+", 1],
+          },
+        });
+        
+        // Add a symbol layer
+        map.addLayer({
+          id: "clusters",
+          type: "circle",
+          source: "points",
+          filter: ["has", "point_count"],
+          paint: {
+            "circle-color": "rgb(229, 36, 59)",
+            "circle-radius": ["step", ["get", "point_count"], 20, 100, 30, 750, 40],
+            "circle-opacity": 0.75,
+            "circle-stroke-width": 4,
+            "circle-stroke-color": "#fff",
+            "circle-stroke-opacity": 0.5,
+          },
+        });
+      
+        map.addLayer({
+          id: "cluster-count",
+          type: "symbol",
+          source: "points",
+          filter: ["has", "point_count"],
+          layout: {
+            "text-field": "{sum}",
+            "text-font": ["Open Sans Bold"],
+            "text-size": 16,
+          },
+          paint: {
+            "text-color": "white",
+          },
+        });
+      
+        map.addLayer({
+          id: "unclustered-point",
+          type: "circle",
+          source: "points",
+          filter: ["!", ["has", "point_count"]],
+          paint: {
+            "circle-radius": ["step", ["get", "event_count"], 20, 100, 30, 750, 40],
+            "circle-color": "rgb(229, 36, 59)",
+            "circle-opacity": 0.75,
+            "circle-stroke-width": 4,
+            "circle-stroke-color": "#fff",
+            "circle-stroke-opacity": 0.5,
+          },
+        });
 
+        map.on("mouseenter", "clusters", function () {
+          map.getCanvas().style.cursor = "pointer";
+        });
+        map.on("mouseleave", "clusters", function () {
+          map.getCanvas().style.cursor = "";
+        });
+
+        // Récupérer les données d'une station
+        map.on("click", "unclustered-point", function (e) {
+          console.log('click', e.features);
+        });
+
+        // Récupérer les données d'une station
+        map.on("click", "clusters", function (e) {
+          map.flyTo({center: e.features[0].geometry.coordinates, zoom: map.getZoom() + 1 });
+        });
+
+      });
+        
     }
   }, [pageIsMounted]);
 
