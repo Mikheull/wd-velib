@@ -1,5 +1,8 @@
 import Head from 'next/head'
 import { useRef, useEffect, useState } from "react";
+
+import data from '../public/data/stations.json';
+
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 
@@ -17,6 +20,7 @@ export default function Home() {
     if (pageIsMounted) {
       mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
+      // Init
       const map = new mapboxgl.Map({
         container: "map-container",
         style: "mapbox://styles/mapbox/light-v10",
@@ -24,6 +28,7 @@ export default function Home() {
         zoom: zoom,
       });
 
+      // Geolocalisation
       map.addControl(
         new mapboxgl.GeolocateControl({
           positionOptions: {
@@ -33,12 +38,45 @@ export default function Home() {
         })
       );
       
+      // Search input
       map.addControl(
         new MapboxGeocoder({
           accessToken: mapboxgl.accessToken,
           mapboxgl: mapboxgl
         })
       );
+
+      // Load stations
+      map.on('load', function () {
+      
+        map.loadImage( '/images/pin.png',
+          function (error, image) {
+            if (error) throw error;
+            map.addImage('custom-marker', image);
+  
+            map.addSource('points', {
+              'type': 'geojson',
+              'data': {
+                'type': 'FeatureCollection',
+                'features': data.features
+              }
+            });
+            
+            // Add a symbol layer
+            map.addLayer({
+              'id': 'symbols',
+              'type': 'symbol',
+              'source': 'points',
+              'layout': {
+                'icon-image': 'custom-marker'
+              },
+              'filter': ['==', '$type', 'Point']
+            });
+          }
+        );
+  
+      });
+
     }
   }, [pageIsMounted]);
 
