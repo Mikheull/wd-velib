@@ -1,11 +1,11 @@
 import Head from 'next/head'
 import { useRef, useEffect, useState } from "react";
+import axios from 'axios'
 
-import data from '../public/data/stations.json';
+import statios from '../public/data/stations.json';
 import mapStyles from '../public/styles/map.module.css'
 
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-
 
 export default function Home() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
@@ -48,13 +48,14 @@ export default function Home() {
       );
 
       // Load stations
-      map.on('load', function () {
-      
+      map.on('load', async function () {
+       
+        // Ajout du fichier source des stations
         map.addSource('points', {
           'type': 'geojson',
           'data': {
             'type': 'FeatureCollection',
-            'features': data.features
+            'features': statios
           },
           'cluster': true,
           'clusterMaxZoom': 12,
@@ -110,19 +111,87 @@ export default function Home() {
           },
         });
 
-        map.on("mouseenter", "clusters", function () {
+        map.addLayer({
+          id: "unclustered-point-label",
+          type: "symbol",
+          source: "points",
+          minzoom: 13,
+          layout: {
+              "text-field": "{name}",
+              "text-anchor": "top",
+              "text-offset": [0,0.5],
+          },
+          paint: {
+            "text-color": "rgb(229, 36, 59)"
+          }
+        });
+      
+
+
+
+        map.on("mouseenter", "unclustered-point", function () {
           map.getCanvas().style.cursor = "pointer";
         });
-        map.on("mouseleave", "clusters", function () {
+        map.on("mouseleave", "unclustered-point", function () {
           map.getCanvas().style.cursor = "";
         });
 
-        // Récupérer les données d'une station
+        // Popin de station
         map.on("click", "unclustered-point", function (e) {
-          console.log('click', e.features);
+          var coordinates = e.features[0].geometry.coordinates.slice();
+          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+          }
+          
+          let popin = 'Une erreur est survenue';
+          // Retour API et création du template de la popin
+          axios.get(`https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&q=stationcode%3D${e.features[0].properties.stationcode}`)
+          .then(function (response) {
+              let _data = response.data.records;
+              const pre = _data[0].fields;
+
+              popin = `
+                <div>
+                  <div>
+                    <h2>${pre.name}</h2>
+                    <span>${pre.stationcode}</span>
+                  </div>
+                  <p>Cette station situé à ${pre.nom_arrondissement_communes} peut contenir jusqu'à ${pre.capacity} vélos. La station est actuellement ${(pre.is_installed == 'OUI' && pre.is_returning == 'OUI') ? 'ouverte' : 'fermée'}. Vous ${(pre.is_renting == 'OUI') ? 'pouvez' : 'ne pouvez pas'} prendre un abonnement directement sur place via la borne !<p>
+                  
+                  <div></div>
+                  
+                  <div>
+                    <div>
+                      <span>${pre.mechanical}</span>
+                      <img src="images/icons/mechanical.svg" alt=""/>
+                    </div>
+                    <div>
+                      <span>${pre.ebike}</span>
+                      <img src="images/icons/electric.svg" alt=""/>
+                    </div>
+                    <div>
+                      <span>${pre.numdocksavailable}</span>
+                      <img src="images/icons/place.svg" alt=""/>
+                    </div>
+                  </div>
+                </div>
+              `;
+              new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(popin)
+                .addTo(map);
+
+          }).catch(err => {
+              console.log(err);
+              new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(popin)
+                .addTo(map);
+          });
+          
         });
 
-        // Récupérer les données d'une station
+        // Zoom on cluster
         map.on("click", "clusters", function (e) {
           map.flyTo({center: e.features[0].geometry.coordinates, zoom: map.getZoom() + 1 });
         });
@@ -136,7 +205,7 @@ export default function Home() {
     <div className="container">
       
       <Head>
-        <title>Velib</title>
+        <title>Velib x Waze</title>
         <link rel="icon" href="/favicon.ico" />
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
