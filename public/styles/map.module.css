@@ -1,6 +1,10 @@
 #map-container {width: 100vw;height: 100vh;}
 
 /* Search and Buttons */
+.mapboxgl-ctrl-geocoder {
+    
+}
+
 
 
 /* Popup basic styles */

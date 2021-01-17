@@ -19,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     if (pageIsMounted) {
-      mapboxgl.accessToken = "pk.eyJ1IjoibWlraGV1bGwiLCJhIjoiY2ppa24wbnVmMjAxZzNxcXAzbGxvcHdwcSJ9.PRr0Bp0Y-i2xUrJ5cBvbPw";
+      mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
       // Init
       const map = new mapboxgl.Map({
