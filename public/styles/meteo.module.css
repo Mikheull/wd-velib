@@ -1,5 +1,43 @@
-body {
+body {margin: 0;padding: 0;}
+.meteo_container {
+    background: #2b2f41;
     width: 100vw;
     height: 100vh;
-    background: #2b2f41;
+}
+
+.back_button {
+    margin-bottom: 10px;
+}
+.back_button img {
+    transform: rotate(0.5turn);
+}
+
+.meteo {
+    max-width: 440px;
+    margin: 0 auto;
+    padding-top: 20vh;
+}
+.meteo .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.meteo .header .temp {
+    font-size: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFF;
+    font-weight: bold;
+}
+
+.meteo .date {
+    margin: 15px 0;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFF;
+}
+.meteo .day {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #8b8e98;
+    text-transform: capitalize;
 }

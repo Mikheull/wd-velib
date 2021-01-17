@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.213" height="26.007" viewBox="0 0 26.213 26.007">
+  <g id="cloud-rain" transform="translate(1.154 1.007)">
+    <line id="Ligne_7" data-name="Ligne 7" y2="9" transform="translate(16.158 13)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Ligne_8" data-name="Ligne 8" y2="9" transform="translate(8.144 13)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Ligne_9" data-name="Ligne 9" y2="9" transform="translate(12.151 15)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Tracé_365" data-name="Tracé 365" d="M21.727,17.966A5.443,5.443,0,0,0,19.545,7.534H18.171a8.723,8.723,0,1,0-13.9,8.984" transform="translate(-0.994 -1)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>
