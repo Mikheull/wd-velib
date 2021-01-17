@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { useRef, useEffect, useState } from "react";
 import axios from 'axios'
 
-import statios from '../public/data/stations.json';
-import mapStyles from '../public/styles/map.module.css'
+import stations from '../public/data/stations.json';
+import '../public/styles/map.module.css'
 
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
@@ -55,7 +55,7 @@ export default function Home() {
           'type': 'geojson',
           'data': {
             'type': 'FeatureCollection',
-            'features': statios
+            'features': stations
           },
           'cluster': true,
           'clusterMaxZoom': 12,
@@ -115,7 +115,7 @@ export default function Home() {
           id: "unclustered-point-label",
           type: "symbol",
           source: "points",
-          minzoom: 13,
+          minzoom: 15,
           layout: {
               "text-field": "{name}",
               "text-anchor": "top",
@@ -126,8 +126,6 @@ export default function Home() {
           }
         });
       
-
-
 
         map.on("mouseenter", "unclustered-point", function () {
           map.getCanvas().style.cursor = "pointer";
@@ -151,26 +149,27 @@ export default function Home() {
               const pre = _data[0].fields;
 
               popin = `
-                <div>
-                  <div>
-                    <h2>${pre.name}</h2>
-                    <span>${pre.stationcode}</span>
+                <div class="station_details">
+                  <div class="header">
+                    <h2 class="title">${pre.name}</h2>
+                    <span class="subtitle">${pre.stationcode}</span>
                   </div>
-                  <p>Cette station situé à ${pre.nom_arrondissement_communes} peut contenir jusqu'à ${pre.capacity} vélos. La station est actuellement ${(pre.is_installed == 'OUI' && pre.is_returning == 'OUI') ? 'ouverte' : 'fermée'}. Vous ${(pre.is_renting == 'OUI') ? 'pouvez' : 'ne pouvez pas'} prendre un abonnement directement sur place via la borne !<p>
+
+                  <p class="desc">Cette station situé à ${pre.nom_arrondissement_communes} peut contenir jusqu'à ${pre.capacity} vélos. La station est actuellement ${(pre.is_installed == 'OUI' && pre.is_returning == 'OUI') ? 'ouverte' : 'fermée'}. Vous ${(pre.is_renting == 'OUI') ? 'pouvez' : 'ne pouvez pas'} prendre un abonnement directement sur place via la borne !<p>
                   
-                  <div></div>
+                  <div class="separator"></div>
                   
-                  <div>
-                    <div>
-                      <span>${pre.mechanical}</span>
+                  <div class="details">
+                    <div class="item_details mechanical">
+                      <p>${pre.mechanical}</p>
                       <img src="images/icons/mechanical.svg" alt=""/>
                     </div>
-                    <div>
-                      <span>${pre.ebike}</span>
+                    <div class="item_details electric">
+                      <p>${pre.ebike}</p>
                       <img src="images/icons/electric.svg" alt=""/>
                     </div>
-                    <div>
-                      <span>${pre.numdocksavailable}</span>
+                    <div class="item_details place">
+                      <p>${pre.numdocksavailable}</p>
                       <img src="images/icons/place.svg" alt=""/>
                     </div>
                   </div>
@@ -214,7 +213,7 @@ export default function Home() {
         <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
       </Head>
 
-      <div id="map-container" className={mapStyles.map} style={{ height: "100vh", width: "100vw" }} />
+      <div id="map-container"/>
     </div>
   )
 }
