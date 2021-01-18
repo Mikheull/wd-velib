@@ -1,81 +1,150 @@
 body {margin: 0;padding: 0;}
 #map-container {width: 100vw;height: 100vh;}
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {display: none;}
 
 /* Search and Buttons */
-.mapboxgl-ctrl-geocoder {
-    
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+    position: fixed;
+    left: 38vw;
+    top: 20px
 }
+.mapboxgl-ctrl-geocoder, .mapboxgl-ctrl-geocoder .suggestions {box-shadow: 0 0 5px 2px rgba(177, 177, 177, 0.1);}
 
+.mapboxgl-ctrl.mapboxgl-ctrl-group {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    box-shadow: none;
+    border: 1px solid rgba(177, 177, 177, 0.5);
+}
 
 
 /* Popup basic styles */
-.mapboxgl-popup-anchor-top .mapboxgl-popup-tip, .mapboxgl-popup-anchor-top-left .mapboxgl-popup-tip, .mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {border-bottom-color: #2b2f41;}
-.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom-left .mapboxgl-popup-tip, .mapboxgl-popup-anchor-bottom-right .mapboxgl-popup-tip {border-top-color: #2b2f41;}
-.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {border-left-color: #2b2f41}
-.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {border-right-color: #2b2f41}
-
-.mapboxgl-popup {
-    max-width: 400px;
-}
-.mapboxgl-popup-content {
+.station_details {
+    z-index: 999;
+    font-family: Arial, Helvetica, sans-serif;
     background: #2b2f41;
-    padding: 10px 20px;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 340px;
+    overflow: scroll;
 }
-.mapboxgl-popup-content .mapboxgl-popup-close-button {
-    display: none;
-}
+.station_details.show{display: block;}
+.station_details.hidden{display: none;}
 
-
-
-/* Popup custom styles */
 .station_details .header {
-    display: flex;
-    align-items: flex-start;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("/images/station_banner.jpg");
+    margin: 0;
+    padding: 0;
+    position: relative;
     color: #FFF;
-    margin-top: 10px;
-    justify-content: space-between;
+}
+.station_details .header .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
 }
 .station_details .header .title {
-    font-weight: bold;
-    margin: 0;
+    position: absolute;
+    bottom: 90px;
+    width: 100%;
+    padding: 0 20px;
+}
+.station_details .header .affluence {
+    position: absolute;
+    bottom: 40px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+.station_details .header .affluence span {
+    margin: 0 2px;
+}
+.station_details .header .affluence p {
+    color: #a7a9b0;
+    font-size: 13px;
+}
+
+.station_details .body {
+    position: relative;
+    top: -35px;
+    background: #2b2f41;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 
-.station_details .desc {
+.station_details .body .wrapper {
+    padding: 20px 20px;
+}
+.station_details .body .wrapper .title {
+    color: #FFF;
+    font-size: 20px;
+}
+.station_details .body .wrapper .title .code {
+    color: #a7a9b0;
+    font-size: 13px;
+}
+.station_details .body .wrapper .desc {
     color: #a7a9b0;
 }
-
-
-.station_details .separator {
+.station_details .body .wrapper .separator {
     height: 1px;
-    width: 100%;
     background: #373a4b;
-    margin: 20px 0;
+    width: 100%;
+    margin: 20px auto;
 }
-
-
-.station_details .details {
-   display: flex;
-   justify-content: space-between;
+.station_details .body .wrapper .details {
+    display: flex;
+    justify-content: space-between;
 }
-.station_details .details .item_details {
-   display: flex;
-   flex-direction: column;
+.station_details .body .wrapper .details .item_details {
+    display: flex;
+    flex-direction: column;
 }
-.station_details .details .item_details p {
+.station_details .body .wrapper .details .item_details p {
     text-align: center;
     font-weight: bold;
     font-size: 2em;
     margin: 0 0 10px 0;
 }
-.station_details .details .item_details.mechanical p {
-    color: #b4e530;
+.station_details .body .wrapper .details .item_details img {
+    width: 32px;
+    height: 32px;
 }
-.station_details .details .item_details.electric p {
-    color: #3084e5;
+.station_details .body .wrapper .details .item_details.mechanical p {color: #b4e530;}
+.station_details .body .wrapper .details .item_details.electric p {color: #3084e5;}
+.station_details .body .wrapper .details .item_details.place p {color: #FFF;}
+.station_details .body .wrapper .button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background: #49cdde;
+    border: none;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
 }
-.station_details .details .item_details.place p {
+
+.station_details .body .wrapper_prediction {
+    padding: 0 20px;
+}
+.station_details .body .wrapper_prediction .title {
+    color: #FFF;
+    font-size: 20px;
+}
+.station_details .body .wrapper_prediction .timeline {
+    height: 200px;
+    overflow: scroll;
     color: #FFF;
 }
- 
-
