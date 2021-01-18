@@ -4,6 +4,7 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 // Components
 import Head from 'next/head'
+import Link from 'next/link'
 import StationDetails from '../components/StationDetails';
 
 // Styles
@@ -13,7 +14,6 @@ import '../public/styles/map.module.css';
 import stations from '../public/data/stations.json';
 
 class Home extends Component {
-  _isMounted = false;
 
   constructor(props) {
     super(props);
@@ -37,16 +37,6 @@ class Home extends Component {
       stationVisibility: false
     }
   }
-
-  static async getInitialProps({res}) {
-    try {
-      return true;
-    } catch (e) {
-      res.statusCode = e;
-      return {statusCode: e};
-    }
-  }
-
     
   componentDidMount() {
     var self = this;
@@ -190,7 +180,6 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
-    
   }
 
   closeStation() {

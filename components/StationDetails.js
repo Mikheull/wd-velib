@@ -32,7 +32,7 @@ class StationDetails extends Component {
                         <span><img src="images/icons/affluence_1.svg" alt=""/></span>
                         <span><img src="images/icons/affluence_1.svg" alt=""/></span>
                         <span><img src="images/icons/affluence_0.svg" alt=""/></span>
-                        <p>Très affluente</p>
+                        <p>Très affluente aujourd'hui</p>
                     </div>
                 </div>
                 
