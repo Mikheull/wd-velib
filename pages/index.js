@@ -20,8 +20,8 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      lng: 2.3797426,
-      lat: 48.8960154,
+      lng: 2.3097668,
+      lat: 48.8620115,
       zoom: 11,
       stationsData: {
         name: null, 
@@ -49,6 +49,7 @@ class Home extends Component {
       style: "mapbox://styles/mapbox/light-v10",
       center: [this.state.lng, this.state.lat],
       zoom: this.state.zoom,
+      minZoom: 10
     });
 
     // Geolocalisation
