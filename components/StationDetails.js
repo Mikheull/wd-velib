@@ -53,8 +53,7 @@ class StationDetails extends Component {
                     </div>
                     
                     <div className="wrapper_prediction">
-                        <div className="title">Quand avoir un vélo ?</div>
-                        <Stats />
+                        <Stats key={this.props.data.stationcode} code={this.props.data.stationcode}/>
                     </div>
                 </div>
             </section>
