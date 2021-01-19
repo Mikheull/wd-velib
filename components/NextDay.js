@@ -8,7 +8,7 @@ class NextDay extends Component {
     render() {
         return (
             <div onClick={this.props.addMethod}>
-                x
+                <img src="images/icons/arrow-right-circle.svg" alt=""/>
             </div>
         )
     }

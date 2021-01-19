@@ -8,7 +8,7 @@ class PrevDay extends Component {
     render() {
         return (
             <div onClick={this.props.remMethod}>
-                x
+                <img src="images/icons/arrow-left-circle.svg" alt=""/>
             </div>
         )
     }

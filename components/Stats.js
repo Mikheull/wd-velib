@@ -120,9 +120,11 @@ class Stats extends Component {
         return (
             <section>
                 <Line data={data} options={options} />
-                <p>{this.state.date_query}</p>
-                <PrevDay remMethod={() => this.remDay()} />
-                <NextDay addMethod={() => this.addDay()} />
+                <p className="statsTitle">{this.state.date_query}</p>
+                <div className="statsControll">
+                  <PrevDay remMethod={() => this.remDay()} />
+                  <NextDay addMethod={() => this.addDay()} />
+                </div>
             </section>
         )
     }

@@ -54,7 +54,6 @@ body {margin: 0;padding: 0;}
 .station_details .header .title {
     position: absolute;
     bottom: 90px;
-    width: 100%;
     padding: 0 20px;
 }
 .station_details .header .affluence {
@@ -147,4 +146,19 @@ body {margin: 0;padding: 0;}
     height: 200px;
     overflow: scroll;
     color: #FFF;
+}
+
+
+.statsTitle {
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+}
+.statsControll {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.statsControll div {
+   cursor: pointer;
 }
