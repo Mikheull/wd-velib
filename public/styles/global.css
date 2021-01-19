@@ -1,3 +1,92 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.pageHeader {
+    position: fixed;
+    z-index: 999999;
+    right: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#menuToggle {
+   position: relative;
+   right: 40px;
+   top: 40px;
+}
+#menuToggle a {
+   text-decoration: none;
+   color: #FFF;
+   transition: color 0.3s ease;
+}
+#menuToggle input {
+   display: block;
+   width: 40px;
+   height: 32px;
+   position: absolute;
+   top: -7px;
+   right: -5px;
+   cursor: pointer;
+   opacity: 0; /* hide this */
+   z-index: 2; /* and place it over the hamburger */
+   -webkit-touch-callout: none;
+}
+#menuToggle span{
+   display: block;
+   width: 33px;
+   height: 4px;
+   margin-bottom: 5px;
+   position: relative;
+   
+   background: #2b2f41;
+   border-radius: 3px;
+   
+   z-index: 1;
+   
+   transform-origin: 4px 0px;
+   
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+               opacity 0.55s ease;
+}
+ 
+#menuToggle span:first-child{transform-origin: 0% 0%;}
+#menuToggle span:nth-last-child(2){transform-origin: 0% 100%;}
+#menuToggle input:checked ~ span{
+   opacity: 1;
+   transform: rotate(45deg) translate(-2px, -1px);
+   background: #FFF;
+}
+ 
+#menuToggle input:checked ~ span:nth-last-child(3){opacity: 0;transform: rotate(0deg) scale(0.2, 0.2);}
+#menuToggle input:checked ~ span:nth-last-child(2){transform: rotate(-45deg) translate(0, -1px);}
+
+
+
+#menu{
+   position: absolute;
+   width: 300px;
+   height: 100vh;
+   padding: 50px;
+   top: -60px;
+   
+   background: #2b2f41;
+   list-style-type: none;
+   -webkit-font-smoothing: antialiased;
+   /* to stop flickering of text in safari */
+   
+   transform-origin: 0% 0%;
+   transform: translate(30%, 0);
+   
+   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+ 
+#menu li{
+   padding: 10px 0;
+   font-size: 22px;
+}
+
+#menuToggle input:checked ~ ul{transform: translate(-80%, 0);}
+
+
+.meteo_container #menuToggle span{ background: #FFF;}
+.meteo_container #menu{ background: #FFF;}
+.meteo_container #menuToggle input:checked ~ span{ background: #2b2f41;}
+.meteo_container #menuToggle a{ color: #2b2f41;}

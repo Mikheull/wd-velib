@@ -6,6 +6,7 @@ import 'moment/locale/fr';
 // Components
 import Head from 'next/head'
 import Link from 'next/link'
+import Header from '../components/Header';
 
 // Styles
 import '../public/styles/meteo.module.css'
@@ -45,18 +46,17 @@ class Meteo extends Component {
           <Head>
             <title>Velib x Waze - Météo</title>
             <link rel="icon" href="/favicon.ico" />
-            <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
-            <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-            <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
             <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
           </Head>
     
           <div className="meteo_container">
+            <Header />
             <div className="meteo">
-              <Link href="../">
+              {/* <Link href="./">
                 <a  className="back_button"><img src="images/icons/next.svg"></img></a>
-              </Link>
+              </Link> */}
+              <a href="./" className="back_button"><img src="images/icons/next.svg"></img></a>
               
               <div className="header">
                 <div className="temp">{this.state.temp} °C</div>

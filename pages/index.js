@@ -6,6 +6,7 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import Head from 'next/head'
 import Link from 'next/link'
 import StationDetails from '../components/StationDetails';
+import Header from '../components/Header';
 
 // Styles
 import '../public/styles/map.module.css';
@@ -200,6 +201,7 @@ class Home extends Component {
             <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
           </Head>
     
+          <Header />
           <div id="map-container"/>
           <StationDetails 
             key="x" 
@@ -207,6 +209,7 @@ class Home extends Component {
             visible={this.state.stationVisibility}
             closeMethod={() => this.closeStation()} 
             />
+
         </div>
       );
   }
