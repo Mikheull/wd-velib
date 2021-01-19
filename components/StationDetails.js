@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 
+// Components
+import Stats from './Stats';
+
 // Styles
 import '../public/styles/map.module.css';
 
@@ -9,18 +12,6 @@ class StationDetails extends Component {
     }
 
     render() {
-        let items = [];
-        for (let i = 0; i <= 23; i++) {
-            items.push(<div key={i} className="item_timeline">
-                <p>{i}:00</p>
-                <div>
-                    <div className="bar_mechanical bar"></div>
-                    <div className="bar_electric bar"></div>
-                    <div className="bar_place bar"></div>
-                </div>
-            </div>)
-          }
-          
         return (
             <section className={"station_details " + (this.props.visible ? 'show' : 'hidden')}>
                 <div className="header">
@@ -63,8 +54,7 @@ class StationDetails extends Component {
                     
                     <div className="wrapper_prediction">
                         <div className="title">Quand avoir un vélo ?</div>
-                    
-                        <div className="timeline">{items}</div>
+                        <Stats />
                     </div>
                 </div>
             </section>

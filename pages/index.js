@@ -160,13 +160,14 @@ class Home extends Component {
 
       // Popin de station
       map.on("click", "unclustered-point", function (e) {
+        self.setState({stationVisibility: true});
+
         // Retour API et affichage de la popin
         axios.get(`https://opendata.paris.fr/api/records/1.0/search/?dataset=velib-disponibilite-en-temps-reel&q=stationcode%3D${e.features[0].properties.stationcode}`)
           .then((response) => {
             let _data = response.data.records;
             const pre = _data[0].fields;
             self.setState({stationsData: pre});
-            self.setState({stationVisibility: true});
           })
         .catch((error)=>{
           console.log(error);
