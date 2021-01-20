@@ -25,7 +25,7 @@ The idea came from my daily use of the Velib app in Paris. During these last mon
 
 
 ## Informations
-The challenge began on Thursday 15 January 2021 and will be ended on Thursday 22 January 2021 ! It aims to bring me knowledge in NextJS and DataMining.
+The challenge began on Thursday 15 January 2021 and will be ended on Thursday 22 January 2021 ! It aims to bring me knowledge in NextJS and DataMining. During the development, I work on the branch "dev".
 
 ## Datas
 Velib provides its data free of charge on the opendata site of Paris API
