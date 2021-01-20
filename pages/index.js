@@ -33,7 +33,11 @@ class Home extends Component {
         is_renting: null, 
         mechanical: null, 
         ebike: null, 
-        numdocksavailable: null
+        numdocksavailable: null,
+        coordonnees_geo: [{
+          0: null,
+          1: null
+        }]
       },
       stationVisibility: false
     }

@@ -48,7 +48,10 @@ class StationDetails extends Component {
                                 <img src="images/icons/place.svg" alt=""/>
                             </div>
                         </div>
-                        <button className="button">Y aller</button>
+
+                        <div className="button">
+                            <a target="_blank" href={"http://www.google.com/maps/place/"+ this.props.data.coordonnees_geo[0] +","+ this.props.data.coordonnees_geo[1] +""}>Y aller</a>
+                        </div>
                         <div className="separator"></div>
                     </div>
                     

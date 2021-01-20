@@ -50,7 +50,6 @@ class Stats extends Component {
           this.setState({data_mechanical: data_mechanical});
           this.setState({data_electric: data_electric});
           this.setState({data_places: data_places});
-          console.log(data_mechanical, this.props.code, this.state.date_query);
         })
       .catch((error)=>{
         console.log(error);
