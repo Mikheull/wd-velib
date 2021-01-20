@@ -10,7 +10,7 @@ export default async (req, res) => {
 
         switch (method) {
             case "GET":
-                connection.db.collection("sample", function(err, collection){
+                connection.db.collection("velib", function(err, collection){
                     collection.find({"record_timestamp": {$regex : query.date+".*"}, "fields.stationcode": query.code}).toArray(function(err, data){
                         if(data){
                             res.status(200).json({data: data});

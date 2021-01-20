@@ -39,6 +39,12 @@ class Home extends Component {
           1: null
         }]
       },
+      affluence: {
+        average: 0,
+        base: 0,
+        percent: 0,
+        success: false
+      },
       stationVisibility: false
     }
   }
@@ -172,6 +178,7 @@ class Home extends Component {
             let _data = response.data.records;
             const pre = _data[0].fields;
             self.setState({stationsData: pre});
+            self.fetchAffluence(pre.stationcode);
           })
         .catch((error)=>{
           console.log(error);
@@ -193,6 +200,18 @@ class Home extends Component {
     this.setState({stationVisibility: false});
   }
 
+  fetchAffluence(code) {
+    if(code){
+      axios.get(`/api/affluence?code=${code}`)
+      .then((response) => {
+          this.setState({affluence: response.data});
+      })
+      .catch((error)=>{
+          console.log(error);
+      });
+    }
+  }
+
   render() {
       return (
         <div className="container">
@@ -212,6 +231,7 @@ class Home extends Component {
           <StationDetails 
             key="x" 
             data={this.state.stationsData} 
+            affluence={this.state.affluence} 
             visible={this.state.stationVisibility}
             closeMethod={() => this.closeStation()} 
             />

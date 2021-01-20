@@ -20,21 +20,19 @@ class Stats extends Component {
           data_electric: [],
           data_places: [],
           date_query: moment().format("YYYY-MM-DD"),
-          // date_query: moment('2020-08-22', 'YYYY-MM-DD'),
-          
         }
     }
 
     componentDidMount() {
-      this.fetchData();
+      this.fetchData(this.state.date_query);
     }
 
-    fetchData() {
+    fetchData(startdate) {
       let data_mechanical = [];
       let data_electric = [];
       let data_places = [];
 
-      axios.get(`/api/predictions?code=${this.props.code}&date=${this.state.date_query}`)
+      axios.get(`/api/predictions?code=${this.props.code}&date=${startdate}`)
         .then((response) => {
           let i = true;
           response.data.data.forEach(element => {
@@ -62,7 +60,7 @@ class Stats extends Component {
       startdate = startdate.format("YYYY-MM-DD");
       this.setState({date_query: startdate});
 
-      this.fetchData()
+      this.fetchData(startdate)
     }
     addDay() {
       var startdate = moment(this.state.date_query, "YYYY-MM-DD");
@@ -70,7 +68,7 @@ class Stats extends Component {
       startdate = startdate.format("YYYY-MM-DD");
       this.setState({date_query: startdate});
       
-      this.fetchData()
+      this.fetchData(startdate)
     }
 
     render() {

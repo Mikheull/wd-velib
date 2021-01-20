@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios'
 
 // Components
 import Stats from './Stats';
@@ -12,19 +13,37 @@ class StationDetails extends Component {
     }
 
     render() {
+        const renderAffluence = ()=>{
+            if(this.props.affluence.success){
+                let html = '';
+
+                for (let i = 0; i < 100; i += 20) {
+                    if(i < this.props.affluence.percent){
+                        html += '<span><img src="images/icons/affluence_1.svg" alt=""/></span>';
+                    }else{
+                        html += '<span><img src="images/icons/affluence_0.svg" alt=""/></span>';
+                    }
+                }
+                if(this.props.affluence.percent <= 33){
+                    html += '<p>Peu affluente aujourd\'hui</p>';
+                }else if(this.props.affluence.percent <= 77){
+                    html += '<p>Assez affluente aujourd\'hui</p>';
+                }else{
+                    html += '<p>Très affluente aujourd\'hui</p>';
+                }
+
+                return html
+            } else{
+                return '<p>Trop tôt pour analyser</p>'
+            }
+        }
+
         return (
             <section className={"station_details " + (this.props.visible ? 'show' : 'hidden')}>
                 <div className="header">
                     <span className="close" onClick={this.props.closeMethod}><img src="images/icons/close.svg" alt=""/></span>
                     <h2 className="title">{this.props.data.name}</h2>
-                    <div className="affluence">
-                        <span><img src="images/icons/affluence_1.svg" alt=""/></span>
-                        <span><img src="images/icons/affluence_1.svg" alt=""/></span>
-                        <span><img src="images/icons/affluence_1.svg" alt=""/></span>
-                        <span><img src="images/icons/affluence_1.svg" alt=""/></span>
-                        <span><img src="images/icons/affluence_0.svg" alt=""/></span>
-                        <p>Très affluente aujourd'hui</p>
-                    </div>
+                    <div className="affluence" dangerouslySetInnerHTML={{__html: renderAffluence()}}></div>
                 </div>
                 
                 <div className="body">
