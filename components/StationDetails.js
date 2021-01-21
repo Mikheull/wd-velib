@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios'
 
 // Components
 import Stats from './Stats';
+import Predictions from './Predictions';
 
 // Styles
 import '../public/styles/map.module.css';
@@ -75,7 +75,13 @@ class StationDetails extends Component {
                     </div>
                     
                     <div className="wrapper_prediction">
+                        <h2 className="title">Historique</h2>
                         <Stats key={this.props.data.stationcode} code={this.props.data.stationcode}/>
+                    </div>
+                    <div className="wrapper_prediction">
+                        <h2 className="title">Prédiction pour demain</h2>
+                        <Predictions key={"-"+this.props.data.stationcode} code={this.props.data.stationcode}/>
+                        <span className="small">La prédiction est basée sur une moyenne des 4 dernières semaines</span>
                     </div>
                 </div>
             </section>

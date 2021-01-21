@@ -39,7 +39,7 @@ export default async (req, res) => {
                                     }
                                 );
                             }else{
-                                res.status(500).json(
+                                res.status(200).json(
                                     {
                                         success: false,
                                         error: "Erreur" 
@@ -47,7 +47,7 @@ export default async (req, res) => {
                                 );
                             }
                         }else{
-                            res.status(500).json(
+                            res.status(200).json(
                                 {
                                     success: false,
                                     error: "Trop tôt pour analyser" 

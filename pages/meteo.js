@@ -27,7 +27,6 @@ class Meteo extends Component {
 
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=Paris&appid=${process.env.METEO_ACCESS_TOKEN}&lang=fr&units=metric`)
       .then(function (response) {
-          // console.log(response);
           self.setState({temp: response.data.main.temp});
           self.setState({icon: response.data.weather[0].icon});
       }).catch(err => {

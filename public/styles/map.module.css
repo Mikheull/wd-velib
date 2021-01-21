@@ -140,16 +140,19 @@ body {margin: 0;padding: 0;}
 }
 
 .station_details .body .wrapper_prediction {
+    margin-bottom: 40px;
     padding: 0 20px;
 }
 .station_details .body .wrapper_prediction .title {
     color: #FFF;
     font-size: 20px;
+    width: 100%;
+    text-align: center;
 }
-.station_details .body .wrapper_prediction .timeline {
-    height: 200px;
-    overflow: scroll;
-    color: #FFF;
+.station_details .body .wrapper_prediction .small {
+    color: #8b8e98;
+    font-size: 13px;
+    width: 100%;
 }
 
 
