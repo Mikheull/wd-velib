@@ -6,6 +6,7 @@
 
 [![Build Status](https://travis-ci.org/Mikheull/wd-velib.svg?branch=dev)](https://travis-ci.org/Mikheull/wd-velib)
 ![GitHub](https://img.shields.io/github/license/Mikheull/wd-velib)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/546d0b06-bc69-4806-83a5-77a19685bcde/deploy-status)](https://app.netlify.com/sites/mikheull-wd-velib/deploys)
 
 ## 🚀 Intro
 Welcome to the first edition of WeekDev 2021. The WeekDev is a challenge that I launched myself, where I develop an idea in maximum 1 week. At the end of this period I would no longer edit the code ! The goal is to improve myself in development and discover new techniques, new languages.
