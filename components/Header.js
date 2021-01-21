@@ -22,13 +22,10 @@ class Header extends Component {
                         <span></span>
 
                         <ul id="menu">
-                            {/* <li><Link href="./"><a>Map</a></Link></li>
-                            <li><Link href="./meteo"><a>Météo</a></Link></li>
-                            <li><Link href="./cgu"><a>CGU / RGPD</a></Link></li> */}
-                            <li><a href="./">Map</a></li>
-                            <li><a href="./meteo">Météo</a></li>
-                            <li><a href="./cgu">CGU / RGPD</a></li>
-                            <a href="https://github.com/Mikheull/" target="_blank"><li>Github</li></a>
+                            <li><img src="images/icons/arrow-right-circle.svg" alt=""/> <Link href="./">Trouver un vélo</Link></li>
+                            <li><img src="images/icons/arrow-right-circle.svg" alt=""/> <Link href="./meteo">Ma météo</Link></li>
+                            <li><img src="images/icons/arrow-right-circle.svg" alt=""/> <Link href="./cgu">CGU / RGPD</Link></li>
+                            <li><a href="https://github.com/Mikheull/" target="_blank">Github</a></li>
                         </ul>
                     </div>
                 </nav>

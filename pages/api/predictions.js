@@ -14,7 +14,7 @@ export default async (req, res) => {
             case "GET":
                 if(query.date){
 
-                    var startdate = moment(query.date, "YYYY-MM-DD");
+                    var startdate = moment("2021-01-20", "YYYY-MM-DD");
                     let increase = 0;
 
                     const arr = [];

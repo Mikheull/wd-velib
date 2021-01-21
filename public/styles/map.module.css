@@ -18,21 +18,44 @@ body {margin: 0;padding: 0;}
     border: 1px solid rgba(177, 177, 177, 0.5);
 }
 
+@media (max-width:600px) {
+    .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+        left: 5vw;
+        width: 50vw;
+    }
+}
+
+
 
 /* Popup basic styles */
 .station_details {
-    z-index: 999;
+    z-index: 110;
     font-family: Arial, Helvetica, sans-serif;
     background: #2b2f41;
+    box-shadow: 8px 0px 15px -7px rgba(0,0,0,0.6);
     height: 100vh;
+    transition-duration: 0.3s;
     position: fixed;
     left: 0;
     top: 0;
     width: 340px;
     overflow: scroll;
 }
-.station_details.show{display: block;}
-.station_details.hidden{display: none;}
+@media (max-width:600px) {
+    .station_details {
+        width: 100vw;
+    }
+}
+
+.station_details.show{
+    left: 0;
+}
+.station_details.hidden{
+    left: -200vw;
+    transform-origin: 0% 0%;
+    transform: translate(30%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
 
 .station_details .header {
     height: 300px;
@@ -51,10 +74,15 @@ body {margin: 0;padding: 0;}
     top: 20px;
     cursor: pointer;
 }
+.station_details .header .close img {
+    width: 32px;
+}
 .station_details .header .title {
     position: absolute;
     bottom: 90px;
     padding: 0 20px;
+   font-family: 'Nunito Sans', sans-serif;
+   font-weight: 800;
 }
 .station_details .header .affluence {
     position: absolute;
@@ -85,7 +113,9 @@ body {margin: 0;padding: 0;}
 }
 .station_details .body .wrapper .title {
     color: #FFF;
-    font-size: 20px;
+    font-size: 25px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
 }
 .station_details .body .wrapper .title .code {
     color: #a7a9b0;
@@ -93,6 +123,7 @@ body {margin: 0;padding: 0;}
 }
 .station_details .body .wrapper .desc {
     color: #a7a9b0;
+    font-style: italic;
 }
 .station_details .body .wrapper .separator {
     height: 1px;
@@ -131,12 +162,12 @@ body {margin: 0;padding: 0;}
     display: flex;
     justify-content: center;
     text-decoration: none;
-    background: #49cdde;
+    background: #3084e5;
     font-size: 20px;
     font-weight: bold;
     border-radius: 6px;
     padding: 10px 0;
-    margin: 0 auto;
+    margin: 40px auto 0;
 }
 
 .station_details .body .wrapper_prediction {
@@ -145,14 +176,17 @@ body {margin: 0;padding: 0;}
 }
 .station_details .body .wrapper_prediction .title {
     color: #FFF;
-    font-size: 20px;
-    width: 100%;
-    text-align: center;
+    font-size: 25px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    width: max-content;
+    margin-bottom: 20px;
 }
 .station_details .body .wrapper_prediction .small {
     color: #8b8e98;
     font-size: 13px;
     width: 100%;
+    font-style: italic;
 }
 
 
@@ -164,8 +198,20 @@ body {margin: 0;padding: 0;}
 .statsControll {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 20px;
 }
 .statsControll div {
    cursor: pointer;
+}
+
+
+.highlight {
+    background: linear-gradient(
+      0deg,
+      rgba(48, 132, 229, 0.42) 45%,
+      transparent 45%
+    );
+    padding: 0 0.1em;
+    margin: 0 -0.1em;
 }

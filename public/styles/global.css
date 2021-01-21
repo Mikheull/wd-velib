@@ -1,6 +1,6 @@
 .pageHeader {
     position: fixed;
-    z-index: 999999;
+    z-index: 100;
     right: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -60,27 +60,51 @@
 
 
 
+
 #menu{
    position: absolute;
    width: 300px;
    height: 100vh;
    padding: 50px;
    top: -60px;
-   
+   box-shadow: -8px 0px 15px -7px rgba(0,0,0,0.6);
+   font-family: 'Nunito Sans', sans-serif;
+   font-weight: 700;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+
    background: #2b2f41;
    list-style-type: none;
    -webkit-font-smoothing: antialiased;
-   /* to stop flickering of text in safari */
    
    transform-origin: 0% 0%;
    transform: translate(30%, 0);
    
    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
+
+@media (max-width:600px) {
+   #menu{
+      width: 100vw;
+      align-items: center;
+   }
+   #menu li{
+      padding: 10px 20px;
+   }
+}
  
 #menu li{
    padding: 10px 0;
    font-size: 22px;
+   display: flex;
+   align-items: center;
+   gap: 20px;
+   transition-duration: 0.3s;
+}
+#menu li:hover{
+   transition-duration: 0.3s;
+   gap: 30px;
 }
 
 #menuToggle input:checked ~ ul{transform: translate(-80%, 0);}

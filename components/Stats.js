@@ -121,9 +121,9 @@ class Stats extends Component {
             <section>
                 <Line data={data} options={options} />
                 <span className="small">Changez de jour en cliquant sur les flèches</span>
-                <p className="statsTitle">{this.state.date_query}</p>
                 <div className="statsControll">
                   <PrevDay remMethod={() => this.remDay()} />
+                  <p className="statsTitle">{this.state.date_query}</p>
                   <NextDay addMethod={() => this.addDay()} />
                 </div>
             </section>
