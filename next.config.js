@@ -2,6 +2,7 @@ const withCSS = require('@zeit/next-css');
 const { parsed: localEnv } = require("dotenv").config();
 
 module.exports = withCSS({
+  target: "serverless",
   env: {
     MAPBOX_ACCESS_TOKEN: process.env.MAPBOX_ACCESS_TOKEN,
     METEO_ACCESS_TOKEN: process.env.METEO_ACCESS_TOKEN,
