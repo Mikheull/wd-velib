@@ -6,7 +6,6 @@
 
 [![Build Status](https://travis-ci.org/Mikheull/wd-velib.svg?branch=dev)](https://travis-ci.org/Mikheull/wd-velib)
 ![GitHub](https://img.shields.io/github/license/Mikheull/wd-velib)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/546d0b06-bc69-4806-83a5-77a19685bcde/deploy-status)](https://app.netlify.com/sites/mikheull-wd-velib/deploys)
 
 ## 🚀 Intro
 Welcome to the first edition of WeekDev 2021. The WeekDev is a challenge that I launched myself, where I develop an idea in maximum 1 week. At the end of this period I would no longer edit the code ! The goal is to improve myself in development and discover new techniques, new languages.
@@ -66,6 +65,11 @@ Create a `.env` file in root directory and write the configuration below.
 ```bash
 MAPBOX_ACCESS_TOKEN=xxxxxxx
 METEO_ACCESS_TOKEN=xxxxxxx
+
+NOSQL_HOST=host
+NOSQL_USER=user
+NOSQL_PWD=xxxxxx
+NOSQL_TABLE=velib
 ```
 
 ## Usage
@@ -73,3 +77,10 @@ METEO_ACCESS_TOKEN=xxxxxxx
 ```bash
 npm run dev
 ```
+
+
+## Result
+I explain in more detail the development of this app in the wiki [here](https://github.com/Mikheull/wd-velib/wiki)<br>
+
+Here is the result after 1 week :<br>
+<img src="https://raw.githubusercontent.com/Mikheull/wd-velib/dev/public/images/demo_map.gif">

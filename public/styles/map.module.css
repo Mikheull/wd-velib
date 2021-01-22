@@ -1,0 +1,217 @@
+body {margin: 0;padding: 0;}
+#map-container {width: 100vw;height: 100vh;}
+.mapboxgl-ctrl.mapboxgl-ctrl-attrib {display: none;}
+
+/* Search and Buttons */
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+    position: fixed;
+    left: 38vw;
+    top: 20px
+}
+.mapboxgl-ctrl-geocoder, .mapboxgl-ctrl-geocoder .suggestions {box-shadow: 0 0 5px 2px rgba(177, 177, 177, 0.1);}
+
+.mapboxgl-ctrl.mapboxgl-ctrl-group {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    box-shadow: none;
+    border: 1px solid rgba(177, 177, 177, 0.5);
+}
+
+@media (max-width:600px) {
+    .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+        left: 5vw;
+        width: 50vw;
+    }
+}
+
+
+
+/* Popup basic styles */
+.station_details {
+    z-index: 110;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #2b2f41;
+    box-shadow: 8px 0px 15px -7px rgba(0,0,0,0.6);
+    height: 100vh;
+    transition-duration: 0.3s;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 340px;
+    overflow: scroll;
+}
+@media (max-width:600px) {
+    .station_details {
+        width: 100vw;
+    }
+}
+
+.station_details.show{
+    left: 0;
+}
+.station_details.hidden{
+    left: -200vw;
+    transform-origin: 0% 0%;
+    transform: translate(30%, 0);
+    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+.station_details .header {
+    height: 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url("/images/station_banner.jpg");
+    margin: 0;
+    padding: 0;
+    position: relative;
+    color: #FFF;
+}
+.station_details .header .close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+}
+.station_details .header .close img {
+    width: 32px;
+}
+.station_details .header .title {
+    position: absolute;
+    bottom: 90px;
+    padding: 0 20px;
+   font-family: 'Nunito Sans', sans-serif;
+   font-weight: 800;
+}
+.station_details .header .affluence {
+    position: absolute;
+    bottom: 40px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+.station_details .header .affluence span {
+    margin: 0 2px;
+}
+.station_details .header .affluence p {
+    color: #a7a9b0;
+    font-size: 13px;
+}
+
+.station_details .body {
+    position: relative;
+    top: -35px;
+    background: #2b2f41;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+
+.station_details .body .wrapper {
+    padding: 20px 20px;
+}
+.station_details .body .wrapper .title {
+    color: #FFF;
+    font-size: 25px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+}
+.station_details .body .wrapper .title .code {
+    color: #a7a9b0;
+    font-size: 13px;
+}
+.station_details .body .wrapper .desc {
+    color: #a7a9b0;
+    font-style: italic;
+}
+.station_details .body .wrapper .separator {
+    height: 1px;
+    background: #373a4b;
+    width: 100%;
+    margin: 20px auto;
+}
+.station_details .body .wrapper .details {
+    display: flex;
+    justify-content: space-between;
+}
+.station_details .body .wrapper .details .item_details {
+    display: flex;
+    flex-direction: column;
+}
+.station_details .body .wrapper .details .item_details p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    margin: 0 0 10px 0;
+}
+.station_details .body .wrapper .details .item_details img {
+    width: 32px;
+    height: 32px;
+}
+.station_details .body .wrapper .details .item_details.mechanical p {color: #b4e530;}
+.station_details .body .wrapper .details .item_details.electric p {color: #3084e5;}
+.station_details .body .wrapper .details .item_details.place p {color: #ffffff;}
+.station_details .body .wrapper .button {
+    margin-top: 20px;
+    width: 100%;
+}
+.station_details .body .wrapper .button a {
+    width: 200px;
+    color: #FFF;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    background: #3084e5;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 10px 0;
+    margin: 40px auto 0;
+}
+
+.station_details .body .wrapper_prediction {
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+.station_details .body .wrapper_prediction .title {
+    color: #FFF;
+    font-size: 25px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 700;
+    width: max-content;
+    margin-bottom: 20px;
+}
+.station_details .body .wrapper_prediction .small {
+    color: #8b8e98;
+    font-size: 13px;
+    width: 100%;
+    font-style: italic;
+}
+
+
+.statsTitle {
+    text-align: center;
+    color: #FFF;
+    font-weight: bold;
+}
+.statsControll {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.statsControll div {
+   cursor: pointer;
+}
+
+
+.highlight {
+    background: linear-gradient(
+      0deg,
+      rgba(48, 132, 229, 0.42) 45%,
+      transparent 45%
+    );
+    padding: 0 0.1em;
+    margin: 0 -0.1em;
+}
