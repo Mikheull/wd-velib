@@ -22,6 +22,7 @@ The idea came from my daily use of the Velib app in Paris. During these last mon
 5. [Installation](#installation)
 6. [Configuration](#configuration)
 7. [Usage](#usage)
+8. [Result](#result)
 
 
 ## Informations
@@ -65,6 +66,11 @@ Create a `.env` file in root directory and write the configuration below.
 ```bash
 MAPBOX_ACCESS_TOKEN=xxxxxxx
 METEO_ACCESS_TOKEN=xxxxxxx
+
+NOSQL_HOST=host
+NOSQL_USER=user
+NOSQL_PWD=xxxxxx
+NOSQL_TABLE=velib
 ```
 
 ## Usage
@@ -72,3 +78,10 @@ METEO_ACCESS_TOKEN=xxxxxxx
 ```bash
 npm run dev
 ```
+
+
+## Result
+I explain in more detail the development of this app in the wiki [here](https://github.com/Mikheull/wd-velib/wiki)<br>
+
+Here is the result after 1 week :<br>
+<img src="https://raw.githubusercontent.com/Mikheull/wd-velib/dev/public/images/demo_map.gif">
